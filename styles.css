@@ -117,8 +117,11 @@ section[id] {
   position: fixed;
   inset: 0 0 auto;
   z-index: 50;
-  background: rgba(11, 18, 32, 0);
-  transition: backdrop-filter 0.5s ease, background-color 0.5s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 18, 32, 0.96);
+  box-shadow: 0 16px 42px -28px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(18px);
+  transition: backdrop-filter 0.5s ease, background-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .site-header::before {
@@ -126,7 +129,7 @@ section[id] {
   inset: 0;
   z-index: -1;
   content: "";
-  background: linear-gradient(180deg, rgba(11, 18, 32, 0.28), rgba(11, 18, 32, 0));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
 }
 
 .header-inner {
@@ -847,11 +850,31 @@ section[id] {
 }
 
 .solution-institutional-bg {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: linear-gradient(90deg, rgba(250, 250, 248, 0.98), rgba(250, 250, 248, 0.94) 62%, rgba(250, 250, 248, 0.82)),
     url("images/clinica-moderna.png");
   background-repeat: no-repeat;
   background-position: 0, 58%;
   background-size: 100% 100%, cover;
+}
+
+.solution-institutional-bg::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  z-index: 0;
+  height: 5.5rem;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(11, 18, 32, 0), var(--navy));
+  content: "";
+}
+
+.solution-institutional-bg > .container-premium {
+  position: relative;
+  z-index: 1;
 }
 
 .about-copy {
@@ -926,6 +949,7 @@ section[id] {
 .contact-section {
   position: relative;
   overflow: hidden;
+  margin-top: -1px;
   padding-block: 6rem;
   background: var(--navy);
 }
