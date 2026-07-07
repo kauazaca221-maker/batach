@@ -61,6 +61,12 @@ function pushLeadToDataLayer(payload) {
   });
 }
 
+function redirectToThankYouPage() {
+  window.setTimeout(() => {
+    window.location.href = "obrigado.html";
+  }, 350);
+}
+
 if (form) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -100,6 +106,7 @@ if (form) {
       form.reset();
       setFormStatus(form, "Dados enviados. A equipe Batach vai entrar em contato.", "success");
       button.textContent = "Enviado";
+      redirectToThankYouPage();
     } catch (error) {
       setFormStatus(form, "Não foi possível enviar agora. Tente novamente em instantes.", "error");
       button.textContent = originalText;
